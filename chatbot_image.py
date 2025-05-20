@@ -61,7 +61,28 @@ def main():
 
     print("🤖 Sending to Perplexity Sonar...")
     ai_response = ask_ai(text)
+# Streamlit UI
+st.set_page_config(page_title="OCR + AI Chat", layout="centered")
+st.title("🖼️ Screenshot Q&A via OCR + 🤖 Perplexity AI")
 
+uploaded_file = st.file_uploader("Upload a screenshot", type=["png", "jpg", "jpeg"])
+
+if uploaded_file:
+    image = Image.open(uploaded_file)
+    st.image(image, caption="Uploaded Image", use_column_width=True)
+
+    with st.spinner("Extracting text..."):
+        extracted_text = extract_text(image)
+
+    st.subheader("📜 Extracted Text")
+    st.text_area("OCR Result", extracted_text, height=200)
+
+    if extracted_text:
+        with st.spinner("Asking AI..."):
+            ai_answer = ask_ai(extracted_text)
+
+        st.subheader("💡 AI Response")
+        st.text_area("Answer", ai_answer, height=300)
     print(f"\n🧠 AI Response:\n{ai_response}\n")
 
 if __name__ == "__main__":
