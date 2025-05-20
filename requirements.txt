@@ -2,4 +2,3 @@ streamlit
 pytesseract
 Pillow
 dotenv
-Jinja2
