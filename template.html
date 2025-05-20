@@ -26,3 +26,32 @@
         .label {
             font-weight: bold;
             color: #34495e;
+        }
+        .text-box {
+            background: #ecf0f1;
+            padding: 15px;
+            border-radius: 8px;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🖼️ OCR Question & 🤖 AI Answer</h1>
+
+        <div class="block">
+            <div class="label">📷 Extracted Text from Image:</div>
+            <div class="text-box" id="question">
+                {{ question }}
+            </div>
+        </div>
+
+        <div class="block">
+            <div class="label">💡 AI Response:</div>
+            <div class="text-box" id="answer">
+                {{ answer }}
+            </div>
+        </div>
+    </div>
+</body>
+</html>
