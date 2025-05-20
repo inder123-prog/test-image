@@ -10,7 +10,7 @@ load_dotenv()
 API_KEY = os.getenv("PERPLEXITY_API_KEY")
 
 # Optional: Set Tesseract path for macOS
-#pytesseract.pytesseract.tesseract_cmd = "/usr/local/bin/tesseract"
+pytesseract.pytesseract.tesseract_cmd = "/usr/local/bin/tesseract"
 
 # Perplexity Sonar config
 API_URL = "https://api.perplexity.ai/chat/completions"
