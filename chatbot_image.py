@@ -10,7 +10,7 @@ load_dotenv()
 API_KEY = os.getenv("PERPLEXITY_API_KEY")
 
 # Optional: Set Tesseract path for macOS
-pytesseract.pytesseract.tesseract_cmd = "/opt/homebrew/bin/tesseract"
+#pytesseract.pytesseract.tesseract_cmd = "/usr/local/bin/tesseract"
 
 # Perplexity Sonar config
 API_URL = "https://api.perplexity.ai/chat/completions"
@@ -19,7 +19,7 @@ HEADERS = {
     "Content-Type": "application/json",
     "Accept": "application/json"
 }
-MODEL = "sonar-small-chat"  # or sonar-medium-chat
+MODEL = "sonar"  # or sonar-medium-chat
 
 def extract_text(image: Image.Image) -> str:
     return pytesseract.image_to_string(image).strip()
@@ -39,13 +39,13 @@ def ask_ai(prompt: str) -> str:
 
 # Streamlit UI
 st.set_page_config(page_title="OCR + AI Chat", layout="centered")
-st.title("🖼️ Screenshot Q&A via OCR + 🤖 Perplexity AI")
+st.title("Screenshot Q&A via OCR + 🤖 Perplexity AI")
 
 uploaded_file = st.file_uploader("Upload a screenshot", type=["png", "jpg", "jpeg"])
 
 if uploaded_file:
     image = Image.open(uploaded_file)
-    st.image(image, caption="Uploaded Image", use_column_width=True)
+    st.image(image, caption="Uploaded Image", use_container_width=True)
 
     with st.spinner("Extracting text..."):
         extracted_text = extract_text(image)
